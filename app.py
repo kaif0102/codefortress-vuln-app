@@ -1,10 +1,11 @@
 from flask import Flask, request
 import sqlite3
+import os
 
 app = Flask(__name__)
 
-# ❌ Hardcoded secret (TruffleHog will catch this)
-AWS_SECRET_KEY = "AKIAFAKEKEY123456"
+# ✅ Secure: No hardcoded secret
+AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
 
 @app.route("/")
 def home():
